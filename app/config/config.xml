@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<application>
+	<db>
+		<username>root</username>
+		<password>root</password>
+		<host>localhost</host>
+		<name>internatus</name>
+	</db>
+	<general>
+		<pagetitle>Internatus CMS</pagetitle>
+		<salt>internatus</salt>
+	</general>
+</application>

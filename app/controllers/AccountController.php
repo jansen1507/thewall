@@ -1,7 +1,5 @@
 <?php
 
-
-
 class AccountController extends Controller {
 
     function getIndex() {
