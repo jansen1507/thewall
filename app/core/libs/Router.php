@@ -37,23 +37,6 @@ class Router {
                 
         $route = (empty($_GET['url'])) ? '' : $_GET['url'];
 
-        // checking for config file.
-        if(!file_exists(__SITE_PATH."app/config/config.xml")) {
-
-            // checks for logged in account, and kills it
-            if(isset($_SESSION['account_id'])) {
-                Session::destroy();
-            }
-
-            // setting header to install route
-            
-            $installRouteParts = explode('/', $route);
-            
-            if($installRouteParts[0] != 'install') {
-                header("Location: ".BASE_URL."install");
-            }
-        }
-        
         //setting default controller name if none was specified.
         if (empty($route))
         {
