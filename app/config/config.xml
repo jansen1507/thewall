@@ -4,10 +4,10 @@
 		<username>root</username>
 		<password>root</password>
 		<host>localhost</host>
-		<name>internatus</name>
+		<name>thewall</name>
 	</db>
 	<general>
-		<pagetitle>Internatus CMS</pagetitle>
-		<salt>internatus</salt>
+		<pagetitle>thewall</pagetitle>
+		<salt>thewall</salt>
 	</general>
 </application>
