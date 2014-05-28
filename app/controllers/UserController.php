@@ -1,5 +1,5 @@
 <?php
-class UserController {
+class UserController extends Controller {
     function getIndex() {
         URL::redirect('home');
     }
