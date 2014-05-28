@@ -8,6 +8,7 @@ class App {
 
         Session::init();
 
+
         // instantiating the router.
         $router = new Router();
 
