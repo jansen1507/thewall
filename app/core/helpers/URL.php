@@ -28,6 +28,10 @@ class URL {
         }
     }
     public static function redirect($url) {
-        header("Location:".BASE_URL.$url);
+        if($url == 'referer') {
+            header("Location:".$_SERVER['HTTP_REFERER']);
+        } else {
+            header("Location:".BASE_URL.$url);
+        }
     }
 } 
