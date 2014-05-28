@@ -33,16 +33,21 @@ class UserController extends Controller {
             // Validation
 
             if(Validator::check(array(
-                'password' => $password,
-                'email' => $email
+                'email' => $email,
+                'password' => $password
             ))) {
 
                 $user = new User();
+                $user->setEmail($email);
+                $user->setPassword(Hash::make($password));
 
-                // Persist data.
-                // $user->save();
+                // Persist user.
+                if($user->save()) {
+                    Notifier::add('success', 'Congratulations, your user has been created, now login with your new credentials.');
+                } else {
+                    Notifier::add('danger', 'Something went wrong while trying to create your account. :(');
+                }
 
-                Notifier::add('success', 'Congratulations, your user has been created, now login with your new credentials.');
             }
         }
 
