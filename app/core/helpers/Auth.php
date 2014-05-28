@@ -2,48 +2,48 @@
 
 class Auth {
 
-    public static function attempt($username, $password) {
+    public static function attempt($email, $password) {
 
         $db = new Database();
 
         try {
-            $stmt = $db->prepare('SELECT * FROM accounts WHERE username = :username AND password = :password');
-            $stmt->execute(array(':username' => $username, ':password' => Hash::make($password)));
+            $stmt = $db->prepare('SELECT * FROM users WHERE email = :email AND password = :password');
+            $stmt->execute(array(':email' => $email, ':password' => Hash::make($password)));
         } catch (PDOException $e) {
             throw $e;
         }
 
         $count = $stmt->rowCount();
-        $account_id = $stmt->fetchColumn(0);
+        $user_id = $stmt->fetchColumn(0);
 
         // closing connection
         $db = null;
 
         if($count==1) {
-            Auth::login($account_id);
+            Auth::login($user_id);
             return true;
         }
     }
 
     public static function check() {
-        if(Session::get('account_id') != null) {
+        if(Session::get('user_id') != null) {
             return true;
         }
     }
 
     public static function logout() {
-        Session::set('account_id', null);
+        Session::set('user_id', null);
         Session::destroy();
         header('location: '.BASE_URL);
     }
 
-    public static function account($property) {
+    public static function user($property) {
 
         $db = new Database();
 
         try {
-            $stmt = $db->prepare('SELECT * FROM accounts WHERE id = :id');
-            $stmt->execute(array(':id' => Session::get('account_id')));
+            $stmt = $db->prepare('SELECT * FROM users WHERE id = :id');
+            $stmt->execute(array(':id' => Session::get('user_id')));
         } catch (PDOException $e) {
             throw $e;
         }
@@ -55,9 +55,9 @@ class Auth {
         return $result[$property];
     }
 
-    private static function login($account_id) {
-        // Setting the current account's id in the session.
-        Session::set('account_id', $account_id);
+    private static function login($user_id) {
+        // Setting the current user's id in the session.
+        Session::set('user_id', $user_id);
     }
 
 } 
