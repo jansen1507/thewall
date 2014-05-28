@@ -7,8 +7,7 @@ class UserController {
         if(!Auth::check()) {
             $this->view->render('user/login');
         } else {
-            // TODO: update URL helper to accept referer arg.
-            // URL::redirect('referer');
+            URL::redirect('referer');
         }
     }
     function postLogin() {
