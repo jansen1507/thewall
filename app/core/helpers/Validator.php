@@ -3,11 +3,9 @@
 class Validator {
     public static function check($array) {
 
-        // Accepts Associate Array, keys: username, password, email.
+        // Accepts Associate Array, keys: password, email.
 
         $errors = array();
-        $db = new Database();
-
 
         if(array_key_exists('email', $array)) {
             // check for type: email
@@ -21,11 +19,10 @@ class Validator {
                 array_push($errors, 'That is not a Valid email address!');
             }
 
-            $stmt = $db->prepare("SELECT email FROM accounts WHERE email = :email LIMIT 1");
-            $stmt->execute(array(':email' => $array['email']));
+            $result = UserQuery::create()->findOneByEmail($array['email']);
 
             // is available
-            if($stmt->rowCount() != 0) {
+            if($result) {
                 array_push($errors, 'This email address is already associated with an account');
             }
         }
@@ -53,25 +50,6 @@ class Validator {
             }
         }
 
-        if(array_key_exists('username', $array)) {
-
-            // check for empty value
-            if(empty($array['username'])) {
-                array_push($errors, 'the Username field is required');
-            }
-            // check for length
-            if(strlen($array['username']) < 3 || strlen($array['username'] > 10)) {
-                array_push($errors, 'Username has to be between 3 and 10 characters long.');
-            }
-
-            $stmt = $db->prepare("SELECT username FROM accounts WHERE username = :username LIMIT 1");
-            $stmt->execute(array(':username' => $array['username']));
-
-            // is available
-            if($stmt->rowCount() != 0) {
-                array_push($errors, 'Username has already been taken');
-            }
-        }
 
         // if no errors in array, then return true.
         if(count($errors) == 0) {
