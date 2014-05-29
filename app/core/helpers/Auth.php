@@ -8,7 +8,7 @@ class Auth {
             ->filterByEmail($email)
             ->findOne();
 
-        if($user->getPassword() === $password) {
+        if($user->getPassword() === Hash::make($password)) {
             Auth::login($user->getId());
             return true;
         }
@@ -26,7 +26,7 @@ class Auth {
         header('location: '.BASE_URL);
     }
 
-    public static function user($property) {
+    public static function user() {
 
         $user = UserQuery::create()->findPk(Session::get('user_id'));
 
