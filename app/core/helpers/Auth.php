@@ -27,9 +27,7 @@ class Auth {
     }
 
     public static function user() {
-
         $user = UserQuery::create()->findPk(Session::get('user_id'));
-
         return $user;
     }
 
