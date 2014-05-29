@@ -5,8 +5,12 @@
         </div>
         <nav class="eight columns navbar">
             <ul id="main-menu">
+                <li id="create-btn"><a>Create</a></li>
+                <?php if(!Auth::check()) : ?>
+                    <li id="login-btn"><a>Login</a></li>
+                <?php endif; ?>
                 <?php if(Auth::check()): ?>
-                    <a href="<?php echo BASE_URL.'user/logout'; ?>" alt="logout">Logout</a>
+                    <li><a href="<?php echo BASE_URL.'user/logout'; ?>" alt="logout">Logout</a></li>
                 <?php endif; ?>
             <ul>
         </nav>

@@ -8,3 +8,4 @@ require_once(__SITE_PATH.'app/views/head.php');
 
     <div class="row" id="content">
         <?php Notifier::printAll(); ?>
+

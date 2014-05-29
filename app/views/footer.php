@@ -4,7 +4,7 @@
         <p>This website is the product of a Webdevelopment assignment for Copenhagen School of Design & Technology.</p>
         </div>
     </div>
-    
+
     <?php if(isset($this->js_config)) : ?>
         <!-- getting js config array -->
         <script>var config = <?php echo json_encode($this->js_config); ?>;</script>
