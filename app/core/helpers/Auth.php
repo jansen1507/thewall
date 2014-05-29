@@ -4,23 +4,12 @@ class Auth {
 
     public static function attempt($email, $password) {
 
-        $db = new Database();
+        $user = UserQuery::create()
+            ->filterByEmail($email)
+            ->findOne();
 
-        try {
-            $stmt = $db->prepare('SELECT * FROM users WHERE email = :email AND password = :password');
-            $stmt->execute(array(':email' => $email, ':password' => Hash::make($password)));
-        } catch (PDOException $e) {
-            throw $e;
-        }
-
-        $count = $stmt->rowCount();
-        $user_id = $stmt->fetchColumn(0);
-
-        // closing connection
-        $db = null;
-
-        if($count==1) {
-            Auth::login($user_id);
+        if($user->getPassword() === $password) {
+            Auth::login($user->getId());
             return true;
         }
     }
@@ -39,20 +28,9 @@ class Auth {
 
     public static function user($property) {
 
-        $db = new Database();
+        $user = UserQuery::create()->findPk(Session::get('user_id'));
 
-        try {
-            $stmt = $db->prepare('SELECT * FROM users WHERE id = :id');
-            $stmt->execute(array(':id' => Session::get('user_id')));
-        } catch (PDOException $e) {
-            throw $e;
-        }
-
-        $result = $stmt->fetch();
-
-        $db = null;
-
-        return $result[$property];
+        return $user;
     }
 
     private static function login($user_id) {
