@@ -6,7 +6,7 @@
         <nav class="eight columns navbar">
             <ul id="main-menu">
                 <?php if(Auth::check()): ?>
-                    <a href="<?php echo BASE_URL.'account/logout'; ?>" alt="logout">Logout</a>
+                    <a href="<?php echo BASE_URL.'user/logout'; ?>" alt="logout">Logout</a>
                 <?php endif; ?>
             <ul>
         </nav>
