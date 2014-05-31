@@ -8,10 +8,11 @@ class Auth {
         $user = UserQuery::create()
             ->filterByEmail($email)
             ->findOne();
-
-        if($user->getPassword() === Hash::make($password)) {
-            Auth::login($user->getId());
-            return true;
+        if($user) {
+            if($user->getPassword() === Hash::make($password)) {
+                Auth::login($user->getId());
+                return true;
+            }
         }
     }
 
