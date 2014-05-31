@@ -1,7 +1,7 @@
 <?php namespace TheWall\Core;
 
 use TheWall\Core\Helpers;
-use TheWall\Libs;
+use TheWall\Core\Libs;
 
 class App {
 

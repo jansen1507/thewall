@@ -1,4 +1,4 @@
-<?php namespace TheWall\Base;
+<?php
 // This is the base controller class!
 
 Abstract Class Controller {
