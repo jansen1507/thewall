@@ -1,11 +1,9 @@
 <?php namespace TheWall\Helpers;
 
-use UserQuery;
-
 class Auth {
 
     public static function attempt($email, $password) {
-        $user = UserQuery::create()
+        $user = \UserQuery::create()
             ->filterByEmail($email)
             ->findOne();
         if($user) {
@@ -29,7 +27,7 @@ class Auth {
     }
 
     public static function user() {
-        $user = UserQuery::create()->findPk(Session::get('user_id'));
+        $user = \UserQuery::create()->findPk(Session::get('user_id'));
         return $user;
     }
 
