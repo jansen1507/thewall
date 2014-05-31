@@ -1,4 +1,4 @@
-<?php
+<?php namespace TheWall\Base;
 
 use TheWall\Helpers\Config;
 
