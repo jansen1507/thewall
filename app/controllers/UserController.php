@@ -1,4 +1,11 @@
 <?php
+
+use TheWall\Helpers\URL;
+use TheWall\Helpers\Auth;
+use TheWall\Helpers\Hash;
+use TheWall\Helpers\Notifier;
+use TheWall\Helpers\Validator;
+
 class UserController extends Controller {
     function getIndex() {
         URL::redirect('home');
