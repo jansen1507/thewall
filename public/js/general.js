@@ -14,7 +14,7 @@ $( document ).ready(function() {
         $("#dialog").dialog( "option", "title", "Create Account" );
 
         var createUserForm = [
-            '<form action="'+config['BASE_URL']+'" method="post">',
+            '<form action="'+config['BASE_URL']+'user/create" method="post">',
             '<ul>',
             '<li class="field"><input class="medium input" placeholder="Email" type="text" name="email" /></li>',
             '<li class="field"><input class="medium input"  placeholder="Password"  type="password" name="password" /></li>',
@@ -25,6 +25,7 @@ $( document ).ready(function() {
 
         $("#dialog").html(createUserForm);
         $("#dialog" ).dialog( "open" );
+        return false;
     });
 
     /*

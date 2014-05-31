@@ -41,20 +41,48 @@ span.headline {
 .gumby-no-touch .navbar li .dropdown ul li a:hover {
 }
 nav#navbar-main-nav {
+    height:48px;
     a {
         color:white;
-        font-size:0.8em;
+        font-size:1em;
+        font-weight:bolder;
+        line-height:48px;
         height:35px;
+
+
+        &:hover {
+          background:none;
+        }
     }
+
     ul {
         height:35px;
+        form {
+          margin:0;
+          padding-bottom:0;
+          input {
+            padding:3px;
+            margin:10px 10px 0 0;
+            width: 160px;
+            height:26px;
+            line-height:26px;
+          }
+
+        }
         li {
-            height:35px;
+            height:20px;
             line-height:0;
             i {
                 line-height:0;
             }
         }
+    }
+    .btn {
+      border:none;
+      width:60px;
+      height:25px;th:60px;
+      color:white;
+      border-radius:3px;
     }
     #main-logo {
         font-weight:bold;
@@ -101,4 +129,5 @@ nav#navbar-main-nav {
         text-align:center;
     }
 }
+
 

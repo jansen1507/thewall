@@ -1698,10 +1698,15 @@ span.headline { height: auto; margin-top: 20px; padding: 10px !important; }
 
 .navbar li .dropdown ul > li a { line-height: 33px; color: black; }
 
-nav#navbar-main-nav a { color: white; font-size: 0.8em; height: 35px; }
+nav#navbar-main-nav { height: 48px; }
+nav#navbar-main-nav a { color: white; font-size: 1em; font-weight: bolder; line-height: 48px; height: 35px; }
+nav#navbar-main-nav a:hover { background: none; }
 nav#navbar-main-nav ul { height: 35px; }
-nav#navbar-main-nav ul li { height: 35px; line-height: 0; }
+nav#navbar-main-nav ul form { margin: 0; padding-bottom: 0; }
+nav#navbar-main-nav ul form input { padding: 3px; margin: 10px 10px 0 0; width: 160px; height: 26px; line-height: 26px; }
+nav#navbar-main-nav ul li { height: 20px; line-height: 0; }
 nav#navbar-main-nav ul li i { line-height: 0; }
+nav#navbar-main-nav .btn { border: none; width: 60px; height: 25px; th: 60px; color: white; border-radius: 3px; }
 nav#navbar-main-nav #main-logo { font-weight: bold; white-space: nowrap; }
 nav#navbar-main-nav ul#main-menu { float: right; }
 nav#navbar-main-nav ul#main-menu #user-menu-item { min-width: 150px; text-align: right; }
