@@ -1,25 +1,27 @@
 <?php use TheWall\Core\Helpers; ?>
 <nav id="navbar-main-nav" class="navbar">
     <div class="row">
-        <div class="four columns" id="main-logo">
+        <div class="two columns" id="main-logo">
             <a href="<?php echo BASE_URL; ?>"><?php echo $this->pagetitle;  ?></a>
         </div>
-        <nav class="eight columns navbar">
+        <nav class="ten columns navbar">
             <ul id="main-menu">
-
                 <?php if(!Helpers\Auth::check()) : ?>
-                    <form action="http://localhost:8888/thewall/public/user/login" method="post">
-                        <li class="field"><input class="medium input" placeholder="Email" type="text" name="email" /></li>
-                        <li class="field"><input class="medium input" placeholder="Password" type="password" name="password" /></li>
-                        <li class="field"><input type="submit" class="primary medium btn" value="Login"></li>
-                    </form>
-                    <li> <span style="color:white";>OR</span> </li>
+                    <li>
+                        <form action="<?php echo BASE_URL; ?>user/login" method="post">
+                            <ul>
+                                <li class="field"><input class="medium input" placeholder="Email" type="text" name="email" /></li>
+                                <li class="field"><input class="medium input" placeholder="Password" type="password" name="password" /></li>
+                                <li class="field"><input type="submit" class="primary medium btn" value="Login" style="font-size:0.8rem;"></li>
+                            </ul>
+                        </form>
+                    </li>
                 <?php endif; ?>
-                <li id="create-btn"><a>Create Account</a></li>
+                    <li id="create-btn" class="field"><button class="btn secondary medium" style="margin-left:10px;margin-top:10px;font-weight:100;line-height:26px;font-size:0.8rem;height:26px;width:123px;">Create Account</button></li>
                 <?php if(Helpers\Auth::check()): ?>
-                    <li><a href="<?php echo BASE_URL.'user/logout'; ?>" alt="logout">Logout</a></li>
+                    <a href="<?php echo BASE_URL.'user/logout'; ?>" alt="logout"><li class="field"><button class="btn primary medium" style="margin-bottom:3px;margin-top:10px;font-weight:100;line-height:26px;font-size:0.8rem;height:26px;width:63px;">Logout</button></a></li>
                 <?php endif; ?>
-            <ul>
+            </ul>
         </nav>
         
     </div>
