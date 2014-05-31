@@ -1,3 +1,4 @@
+<?php use TheWall\Helpers\Auth; ?>
 <div class="row">
     <div class="eight columns">
         <div class="row">

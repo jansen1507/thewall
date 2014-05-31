@@ -1,4 +1,6 @@
-<?php 
+<?php
+use TheWall\Helpers\Notifier;
+
 require_once(__SITE_PATH.'app/views/head.php');
 ?>
 <body>
