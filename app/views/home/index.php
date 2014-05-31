@@ -20,12 +20,9 @@
         </div>
     </div>
     <div class="three columns push_one white-box">
-        <h6>Online People:</h6>
+        <p>Sidebar</p>
         <ul>
-            <li>Remeeh</li>
-            <li>Stirpan</li>
-            <li>Lone</li>
-            <li>Lise</li>
+
         </ul>
     </div>
 </div>
