@@ -34,7 +34,7 @@ class Router {
     // Get the controller file from the url.
     private function getController() {
 
-                
+
         $route = (empty($_GET['url'])) ? '' : $_GET['url'];
 
         //setting default controller name if none was specified.
@@ -79,7 +79,7 @@ class Router {
 
     public function loader() {
         
-        
+
         // getting the controller
         $this->getController();
 
@@ -98,7 +98,6 @@ class Router {
 
         // new controller
         $controller = new $class();
-
 
         // if no callable action, then call the default ('index').
         // (the index action is mandatory in controller classes).
