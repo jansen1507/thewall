@@ -23,13 +23,11 @@ class UserController extends Controller {
 
         // Login with auth
 
-        if(Auth::attempt($email, $password)) {
-            URL::redirect('home');
-        } else {
+        if(!Auth::attempt($email, $password)) {
             // else, set notification and return to login
             Notifier::add('warning', "We couldn't log you in with what you just entered. Please try again.");
-            URL::redirect('user/login');
         }
+        URL::redirect('home');
     }
     function postCreate() {
         if(!Auth::check()) {
