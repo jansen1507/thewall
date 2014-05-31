@@ -4,9 +4,6 @@ $( document ).ready(function() {
     | DIALOGS
      */
 
-    // TODO: Get base url
-
-
     // Settings
     $("#content").append('<div id="dialog"></div>');
     $( "#dialog" ).dialog({ autoOpen: false });
@@ -17,7 +14,7 @@ $( document ).ready(function() {
         $("#dialog").dialog( "option", "title", "Create Account" );
 
         var createUserForm = [
-            '<form action="http://localhost:8888/thewall/public/user/create" method="post">',
+            '<form action="'+config['BASE_URL']+'" method="post">',
             '<ul>',
             '<li class="field"><input class="medium input" placeholder="Email" type="text" name="email" /></li>',
             '<li class="field"><input class="medium input"  placeholder="Password"  type="password" name="password" /></li>',
