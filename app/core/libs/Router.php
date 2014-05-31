@@ -1,6 +1,6 @@
-<?php
-class Router {
+<?php namespace TheWall\Libs;
 
+class Router {
 
     // the path to controllers.
     private $path;
@@ -17,8 +17,6 @@ class Router {
     // the passed parameter action/param
     public $param;
 
-
-    
     // Set the path to the controller directory.
     function setPath($path) {
 
