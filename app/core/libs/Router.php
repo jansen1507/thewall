@@ -22,7 +22,7 @@ class Router {
 
         // does the path direct to a valid dir?
         if(is_dir($path) == false) {
-            throw new Exception ('The controllers path: ('.$path.') was not found, or is not accessible');
+            throw new \Exception ('The controllers path: ('.$path.') was not found, or is not accessible');
         }
 
         // setting the path in the object.

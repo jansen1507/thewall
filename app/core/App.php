@@ -1,6 +1,7 @@
 <?php
 
-use TheWall\Helpers\Session;
+use TheWall\Helpers;
+use TheWall\Libs;
 
 class App {
 
@@ -8,11 +9,10 @@ class App {
 
         // starting the session
 
-        Session::init();
-
+        Helpers\Session::init();
 
         // instantiating the router.
-        $router = new Router();
+        $router = new Libs\Router();
 
         // setting the right path to the controllers dir.
         $router->setPath(__SITE_PATH . 'app/controllers');
