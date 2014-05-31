@@ -26,30 +26,30 @@ class UserController extends Controller {
         Helpers\URL::redirect('home');
     }
     function postCreate() {
-        if(!Helpers\Auth::check()) {
-            // get + trim vars
-            $email = (isset($_POST['email']) ? trim($_POST['email']) : false);
-            $password = (isset($_POST['password']) ? trim($_POST['password']) : false);
 
-            // Validation
+        // get + trim vars
+        $email = (isset($_POST['email']) ? trim($_POST['email']) : false);
+        $password = (isset($_POST['password']) ? trim($_POST['password']) : false);
 
-            if(Helpers\Validator::check(array(
-                'email' => $email,
-                'password' => $password
-            ))) {
+        // Validation
 
-                $user = new User();
-                $user->setEmail($email);
-                $user->setPassword(Helpers\Hash::make($password));
+        if(Helpers\Validator::check(array(
+            'email' => $email,
+            'password' => $password
+        ))) {
 
-                // Persist user.
-                if($user->save()) {
-                    Helpers\Notifier::add('success', 'Congratulations, your user has been created, now login with your new credentials.');
-                } else {
-                    Helpers\Notifier::add('danger', 'Something went wrong while trying to create your account. :(');
-                }
+            $user = new User();
+            $user->setEmail($email);
+            $user->setPassword(Helpers\Hash::make($password));
 
+
+            // Persist user.
+            if($user->save()) {
+                Helpers\Notifier::add('success', 'Congratulations, your user has been created, now login with your new credentials.');
+            } else {
+                Helpers\Notifier::add('danger', 'Something went wrong while trying to create your account. :(');
             }
+
         }
 
         Helpers\URL::redirect('home');
