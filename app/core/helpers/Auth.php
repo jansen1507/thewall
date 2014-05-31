@@ -1,5 +1,7 @@
 <?php
 
+use TheWall\Helpers\Hash;
+
 class Auth {
 
     public static function attempt($email, $password) {

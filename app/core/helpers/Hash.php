@@ -1,4 +1,4 @@
-<?php
+<?php namespace TheWall\Helpers;
 
 class Hash {
     public static function make($string) {
