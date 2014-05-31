@@ -1,5 +1,7 @@
 <?php namespace TheWall\Helpers;
 
+use UserQuery;
+
 class Validator {
     public static function check($array) {
 
