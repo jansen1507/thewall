@@ -1,6 +1,6 @@
-<?php namespace TheWall;
+<?php namespace TheWall\Core;
 
-use TheWall\Helpers;
+use TheWall\Core\Helpers;
 use TheWall\Libs;
 
 class App {

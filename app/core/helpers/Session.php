@@ -1,4 +1,4 @@
-<?php namespace TheWall\Helpers;
+<?php namespace TheWall\Core\Helpers;
 
 class Session {
 

@@ -1,6 +1,6 @@
 <?php namespace TheWall\Base;
 
-use TheWall\Helpers\Config;
+use TheWall\Core\Helpers\Config;
 
 class View {
 

@@ -1,6 +1,6 @@
 <?php
 
-use TheWall\Helpers;
+use TheWall\Core\Helpers;
 
 class UserController extends Controller {
     function getIndex() {

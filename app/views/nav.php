@@ -1,4 +1,4 @@
-<?php use TheWall\Helpers; ?>
+<?php use TheWall\Core\Helpers; ?>
 <nav id="navbar-main-nav" class="navbar">
     <div class="row">
         <div class="four columns" id="main-logo">
