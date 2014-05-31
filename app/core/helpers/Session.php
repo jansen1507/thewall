@@ -1,4 +1,5 @@
-<?php
+<?php namespace TheWall\Helpers;
+
 class Session {
 
     public static function init() {

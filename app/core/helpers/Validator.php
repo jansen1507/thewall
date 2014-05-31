@@ -1,4 +1,4 @@
-<?php
+<?php namespace TheWall\Helpers;
 
 class Validator {
     public static function check($array) {

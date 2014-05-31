@@ -1,4 +1,4 @@
-<?php
+<?php namespace TheWall\Helpers;
 
 class Notifier {
     // adds a notification array to the global array 'notifications'.

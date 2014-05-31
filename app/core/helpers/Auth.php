@@ -1,11 +1,10 @@
-<?php
+<?php namespace TheWall\Helpers;
 
-use TheWall\Helpers\Hash;
+use UserQuery;
 
 class Auth {
 
     public static function attempt($email, $password) {
-
         $user = UserQuery::create()
             ->filterByEmail($email)
             ->findOne();

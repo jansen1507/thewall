@@ -1,4 +1,4 @@
-<?php
+<?php namespace TheWall\Helpers;
 
 class URL {
     public static function base() {
