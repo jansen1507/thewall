@@ -1,5 +1,7 @@
 <?php
 
+use TheWall\Helpers\Session;
+
 class App {
 
     public function run() {
