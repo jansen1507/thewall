@@ -9,11 +9,9 @@ class MessageController extends Controller {
         $text = (isset($_POST['text']) ? trim($_POST['text']) : false);
 
 
-        // TODO: check if email is registered!
+        $receiver = UserQuery::create()->filterByEmail($email)->findOne();
 
-        if( 1 == 1 ) {
-
-            $receiver = UserQuery::create()->filterByEmail($email)->findOne();
+        if( !empty($receiver) ) {
 
             $message = new Message();
             $message->setReceiverId($receiver->getId());
@@ -27,6 +25,8 @@ class MessageController extends Controller {
                 Helpers\Notifier::add('danger', 'Something went wrong while trying to create your message. :(');
             }
 
+        } else {
+            Helpers\Notifier::add('warning', 'That is not a registered user, sorry!');
         }
 
         Helpers\URL::redirect('home');
