@@ -12,7 +12,7 @@ class Validator {
         if(array_key_exists('text', $array)) {
             // check for empty string
             if(empty($array['text']) || $array['text'] === '' || $array['text'] == null) {
-                array_push($errors, 'Empty Post, you should write something!');
+                array_push($errors, 'That was an empty Post, you should write something more interesting!');
             }
         }
 
