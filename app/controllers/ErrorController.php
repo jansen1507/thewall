@@ -13,4 +13,3 @@ class ErrorController extends Controller {
         $this->view->render('error/not_found');
     }
 }
-?>
