@@ -9,6 +9,13 @@ class Validator {
 
         $errors = array();
 
+        if(array_key_exists('text', $array)) {
+            // check for empty string
+            if(empty($array['text']) || $array['text'] === '' || $array['text'] == null) {
+                array_push($errors, 'Empty Post, you should write something!');
+            }
+        }
+
         if(array_key_exists('email', $array)) {
             // check for type: email
 
