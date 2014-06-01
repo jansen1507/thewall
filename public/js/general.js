@@ -28,6 +28,23 @@ $( document ).ready(function() {
         return false;
     });
 
+    // CREATE MESSAGE
+    $('#sendMessageButton').on("click", function() {
+       $("#dialog").dialog("option", "title", "New Message");
+       var createMessageForm = [
+           '<form action="'+config['BASE_URL']+'message/create" method="post">',
+           '<ul>',
+           '<li class="field"><input class="medium input" placeholder="To:(email)" type="email" name="email" /></li>',
+           '<li class="field"><textarea class="medium input"  placeholder="Message:" type="text" name="text"></textarea></li>',
+           '<li class="field"><input class="btn secondary" style="color:white; height:30px; width:90px;"  type="submit" value="Create"></li>',
+           '</ul>',
+           '</form>'
+       ].join("\n");
+       $("#dialog").html(createMessageForm);
+       $("#dialog").dialog("open");
+       return false;
+    });
+
     /*
     | Nortifications
      */

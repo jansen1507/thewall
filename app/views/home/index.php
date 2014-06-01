@@ -1,8 +1,8 @@
-<?php use TheWall\Core\Helpers\Auth; ?>
+<?php use TheWall\Core\Helpers; ?>
 <div class="row">
     <div class="eight columns">
         <div class="row">
-            <?php if(Auth::check()) : ?>
+            <?php if(Helpers\Auth::check()) : ?>
 
                 <form action="<?php echo BASE_URL.'post/post'; ?>" method="post">
                     <ul>
@@ -35,16 +35,27 @@
                                 </li>
                             </ul>
                         </form>
-
                     </div>
                 </div>
             <?php endforeach;?>
         </div>
     </div>
-    <div class="three columns push_one white-box">
-        <p>Sidebar</p>
-        <ul>
-
-        </ul>
+    <?php if(Helpers\Auth::check()) : ?>
+    <div class="four columns white-box">
+        <p>Your messages</p>
+        <?php if(count($this->messages) > 0) : ?>
+            <ul>
+            <?php foreach($this->messages as $message): ?>
+                <li>
+                    <h6><?php echo $message->getSender()->getEmail(); ?></h6>
+                    <p><?php echo $message->getText(); ?></p>
+                </li>
+            <?php endforeach; ?>
+            </ul>
+        <?php else: ?>
+            <p>You have no messages!</p>
+        <?php endif; ?>
+            <button id="sendMessageButton" class="primary btn medium" style="font-size: 15px;font-weight:100;color:white;background-color:#3b5998;">Create New Message</button>
+    <?php endif; ?>
     </div>
 </div>

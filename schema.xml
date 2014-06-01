@@ -16,7 +16,7 @@
         </foreign-key>
     </table>
 
-    <table name="comment" phpName="Comment">
+    <table name="comments" phpName="Comment">
         <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
         <column name="user_id" type="integer" required="true" />
         <column name="post_id" type="integer" required="true" />
@@ -26,6 +26,19 @@
         </foreign-key>
         <foreign-key foreignTable="posts" phpName="Post">
             <reference local="post_id" foreign="id"/>
+        </foreign-key>
+    </table>
+
+    <table name="messages" phpName="Message">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
+        <column name="sender_id" type="integer" required="true" />
+        <column name="receiver_id" type="integer" required="true" />
+        <column name="text" type="varchar" size="255" required="true" />
+        <foreign-key foreignTable="users" phpName="Sender" refPhpName="Sender">
+            <reference local="sender_id" foreign="id"/>
+        </foreign-key>
+        <foreign-key foreignTable="users" phpName="Receiver" refPhpName="Receiver">
+            <reference local="receiver_id" foreign="id"/>
         </foreign-key>
     </table>
 
