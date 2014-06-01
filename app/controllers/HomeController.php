@@ -10,7 +10,4 @@ class HomeController extends Controller {
 
     }
 
-    function postPost() {
-
-    }
 }
