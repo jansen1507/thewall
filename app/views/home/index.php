@@ -3,10 +3,11 @@
     <div class="eight columns">
         <div class="row">
             <?php if(Auth::check()) : ?>
-                <form action="dky" method="post">
+
+                <form action="<?php echo BASE_URL.'post/post'; ?>" method="post">
                     <ul>
                         <li class="append field">
-                            <input type="text" placeholder="Write something!" name="post" class="small input" style="max-width:92%;" />
+                            <input type="text" placeholder="Write something!" name="text" class="small input" style="max-width:92%;" />
                             <button class="primary btn medium" style="font-size: 15px;font-weight:100;width:50px;color:white;background-color:#3b5998;">post</button>
                         </li>
                     </ul>
