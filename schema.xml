@@ -5,4 +5,8 @@
         <column name="email" type="varchar" size="255" required="true" />
         <column name="password" type="varchar" size="255" required="true" />
     </table>
+    <table name="posts" phpName="Post">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
+        <column name="text" type="varchar" size="255" required="true" />
+    </table>
 </database>
