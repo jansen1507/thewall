@@ -1703,7 +1703,7 @@ nav#navbar-main-nav a { color: white; font-size: 1em; font-weight: bolder; line-
 nav#navbar-main-nav a:hover { background: none; }
 nav#navbar-main-nav ul { height: 35px; }
 nav#navbar-main-nav ul form { margin: 0; padding-bottom: 0; }
-nav#navbar-main-nav ul form input { padding: 3px; margin: 10px 10px 0 0; width: 160px; height: 26px; line-height: 26px; }
+nav#navbar-main-nav ul form input { padding: 3px; font-size: 0.8rem; margin: 10px 10px 0 0; width: 160px; height: 26px; line-height: 26px; }
 nav#navbar-main-nav ul li { height: 20px; line-height: 0; }
 nav#navbar-main-nav ul li i { line-height: 0; }
 nav#navbar-main-nav .btn { border: none; width: 60px; height: 25px; th: 60px; color: white; border-radius: 3px; }

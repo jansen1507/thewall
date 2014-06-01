@@ -22,7 +22,7 @@
    	<link rel="stylesheet" href="<?php echo BASE_URL; ?>css/gumby.css">
 
     <!-- jquery UI theme stylesheet -->
-    <link rel="stylesheet" href="<?php echo BASE_URL; ?>css/ui-lightness/jquery-ui-1.10.4.custom.min.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>css/bookface/jquery-ui-1.10.4.custom.min.css">
 
 	<script src="<?php echo BASE_URL; ?>js/libs/modernizr-2.6.2.min.js"></script>
 

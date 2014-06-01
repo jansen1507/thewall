@@ -18,7 +18,7 @@ $( document ).ready(function() {
             '<ul>',
             '<li class="field"><input class="medium input" placeholder="Email" type="text" name="email" /></li>',
             '<li class="field"><input class="medium input"  placeholder="Password"  type="password" name="password" /></li>',
-            '<li class="field"><input class="btn primary pretty" style="color:white; height:30px; width:90px;"  type="submit" value="Create"></li>',
+            '<li class="field"><input class="btn primary" style="color:white; height:30px; width:90px;"  type="submit" value="Create"></li>',
             '</ul>',
             '</form>'
         ].join("\n");
