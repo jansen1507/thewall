@@ -16,7 +16,11 @@
             <?php endif; ?>
         </div>
         <div class="row">
-            The posts !!
+            <?php foreach($this->posts as $post) :?>
+                <div class="white-box row">
+                    <p><?php echo $post->getText(); ?></p>
+                </div>
+            <?php endforeach;?>
         </div>
     </div>
     <div class="three columns push_one white-box">
