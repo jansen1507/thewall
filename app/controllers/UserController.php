@@ -3,9 +3,7 @@
 use TheWall\Core\Helpers;
 
 class UserController extends Controller {
-    function getIndex() {
-        Helpers\URL::redirect('home');
-    }
+
     function getLogin() {
         if(!Helpers\Auth::check()) {
             $this->view->render('user/login');
