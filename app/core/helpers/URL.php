@@ -2,6 +2,9 @@
 
 class URL {
     public static function base() {
+
+
+
         // Get base the URL
         if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
             $url = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
@@ -9,7 +12,10 @@ class URL {
             $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
         }
 
+
+
         if(isset($_GET['url'])) {
+
             // exploding the get url
             $routeParts = explode('/', $_GET['url']);
             $urlParts = explode('/', $url);
@@ -18,14 +24,19 @@ class URL {
                 array_pop($urlParts);
             }
 
+
+
             // gathering the parts for the base URL
 
             $url = implode('/', $urlParts);
+
             // adding the ending slash
             $url = $url.'/';
 
-            return $url;
         }
+
+        return $url;
+
     }
     public static function redirect($url) {
         if($url == 'referer') {
