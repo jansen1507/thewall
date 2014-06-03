@@ -112,6 +112,62 @@ nav#navbar-main-nav {
     padding-bottom:35px;
     margin-bottom:35px;
     top:35px;
+    #postsCon {
+      .post {
+        margin-bottom:20px;
+        background: #f0f1f4;
+        border-top-right-radius:3px;
+        border-bottom-right-radius:3px;
+        border-bottom-left-radius:3px;
+        box-shadow: 1px 1px 1px #DDD;
+        .header {
+          color:#3b5998;
+          padding:10px 10px 0 10px;
+          font-weight:bold;
+          font-size:14px;
+        }
+        .body {
+          color: #272727;
+          padding:10px;
+          font-size:13px;
+        }
+        .comments {
+          border-top:1px solid #e1e7ed;
+          padding:10px;
+          background: #f2f3f6;
+          .comment {
+            color: #7a7d80;
+            font-size:12px;
+            .username {
+              color: #4d74c5;
+            }
+          }
+          .comment:not(:first-child)  {
+            border-top:1px solid #dde1e8;
+          }
+          .new {
+            font-size:12px;
+            form {
+              margin:0;
+            }
+            .field {
+              margin:0;
+            }
+            input {
+              font-size:12px;
+              padding:5px;
+              height:30px;
+              line-height: 18px;
+            }
+            .btn {
+              line-height:24px;
+              height:29px;
+              margin-top:2px;
+            }
+          }
+        }
+      }
+    }
 }
 
 #footer {

@@ -3,7 +3,6 @@
     <div class="eight columns">
         <div class="row">
             <?php if(Helpers\Auth::check()) : ?>
-
                 <form action="<?php echo BASE_URL.'post/post'; ?>" method="post">
                     <ul>
                         <li class="append field">
@@ -16,16 +15,23 @@
                 <p>You need to be logged in to post something</p>
             <?php endif; ?>
         </div>
-        <div class="row">
-            <?php foreach($this->posts as $post) :?>
-                <div class="row">
-                    <div class="white-box twelve columns" style="margin-bottom:20px;">
-                        <p><?php echo $post->getUser()->getEmail(); ?></p>
-                        <p><?php echo $post->getText(); ?></p>
-                        <p><?php echo 'comments: '; ?></p>
-                        <?php foreach($post->getComments() as $comment) : ?>
-                            <p><?php echo $comment->getText(); ?></p>
-                        <?php endforeach; ?>
+        <div id="postsCon" class="row">
+            <?php foreach($this->posts as $post) : ?>
+            <div class="row post">
+                <div class="row header">
+                    <?php echo $post->getUser()->getEmail(); ?>
+                </div>
+                <div class="row body">
+                    <?php echo $post->getText(); ?>
+                </div>
+                <div class="row comments">
+                    <?php foreach($post->getComments() as $comment) : ?>
+                    <div class="row comment">
+                        <span class="username"><?php echo $comment->getUser()->getEmail(); ?></span> <?php echo $comment->getText(); ?>
+                    </div>
+                    <?php endforeach; ?>
+                    <?php if(Helpers\Auth::check()) : ?>
+                    <div class="row new">
                         <form action="<?php echo BASE_URL.'comment/create'; ?>" method="post">
                             <ul>
                                 <li class="append field">
@@ -36,8 +42,10 @@
                             </ul>
                         </form>
                     </div>
+                    <?php endif; ?>
                 </div>
-            <?php endforeach;?>
+            </div>
+            <?php endforeach; ?>
         </div>
     </div>
     <?php if(Helpers\Auth::check()) : ?>

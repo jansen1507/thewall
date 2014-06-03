@@ -1713,6 +1713,18 @@ nav#navbar-main-nav ul#main-menu #user-menu-item { min-width: 150px; text-align:
 nav#navbar-main-nav ul#main-menu #user-menu-item ul li { text-align: left; }
 
 #content { overflow-y: scroll; overflow-x: hidden; background: #f5f5f5; height: 100%; bottom: 35px; padding-top: 20px; padding-bottom: 35px; margin-bottom: 35px; top: 35px; }
+#content #postsCon .post { margin-bottom: 20px; background: #f0f1f4; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; box-shadow: 1px 1px 1px #DDD; }
+#content #postsCon .post .header { color: #3b5998; padding: 10px 10px 0 10px; font-weight: bold; font-size: 14px; }
+#content #postsCon .post .body { color: #272727; padding: 10px; font-size: 13px; }
+#content #postsCon .post .comments { border-top: 1px solid #e1e7ed; padding: 10px; background: #f2f3f6; }
+#content #postsCon .post .comments .comment { color: #7a7d80; font-size: 12px; }
+#content #postsCon .post .comments .comment .username { color: #4d74c5; }
+#content #postsCon .post .comments .comment:not(:first-child) { border-top: 1px solid #dde1e8; }
+#content #postsCon .post .comments .new { font-size: 12px; }
+#content #postsCon .post .comments .new form { margin: 0; }
+#content #postsCon .post .comments .new .field { margin: 0; }
+#content #postsCon .post .comments .new input { font-size: 12px; padding: 5px; height: 30px; line-height: 18px; }
+#content #postsCon .post .comments .new .btn { line-height: 24px; height: 29px; margin-top: 2px; }
 
 #footer { border-top: 1px solid #cfcfcf; background: #E7E7E7; padding: 10px; position: fixed; bottom: 0; width: 100%; max-height: 35px; }
 #footer p { font-size: 0.7em; color: #666; height: 35px; padding-bottom: 5px; text-align: center; }
