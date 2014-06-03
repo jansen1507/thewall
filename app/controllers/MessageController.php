@@ -3,6 +3,15 @@
 use TheWall\Core\Helpers;
 
 class MessageController extends Controller {
+    function getIndex() {
+        // getting the messages
+        $this->view->messages = MessageQuery::create()
+            ->filterByReceiverId(Helpers\Session::get('user_id'))
+            ->orderById('desc')
+            ->find();
+
+        $this->view->render('message/index');
+    }
     function postCreate() {
         // get + trim vars
         $email = (isset($_POST['email']) ? trim($_POST['email']) : false);
