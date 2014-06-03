@@ -19,8 +19,14 @@ class CommentController extends Controller {
             $comment->setUserId(Helpers\Session::get('user_id'));
             $comment->setPostId($postId);
 
-            // Persist comment.
-            $comment->save();
+            if($comment->getUserId() != null) {
+                // Persist comment.
+                $comment->save();
+            } else {
+                Helpers\Notifier::add('warning', 'You need to be logged in to write a comment!');
+            }
+
+
         }
 
         Helpers\URL::redirect('home');
