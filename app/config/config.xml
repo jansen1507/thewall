@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <application>
-	<db>
-		<username>root</username>
-		<password>root</password>
-		<host>localhost</host>
-		<name>thewall</name>
-	</db>
 	<general>
 		<pagetitle>thewall</pagetitle>
 		<salt>thewall</salt>
