@@ -4,13 +4,6 @@ use TheWall\Core\Helpers;
 
 class UserController extends Controller {
 
-    function getLogin() {
-        if(!Helpers\Auth::check()) {
-            $this->view->render('user/login');
-        } else {
-            Helpers\URL::redirect('referer');
-        }
-    }
     function postLogin() {
         $email = (isset($_POST['email']) ? trim($_POST['email']) : '');
         $password = (isset($_POST['password']) ? trim($_POST['password']) : '');
