@@ -3,7 +3,7 @@
     <div class="eight columns">
         <div class="row">
             <?php if(Helpers\Auth::check()) : ?>
-                <form action="<?php echo BASE_URL.'post/post'; ?>" method="post">
+                <form action="<?php echo BASE_URL.'post/create'; ?>" method="post">
                     <ul>
                         <li class="append field">
                             <input type="text" placeholder="Write something!" name="text" class="small input" style="max-width:92%;" />
@@ -19,7 +19,7 @@
             <?php foreach($this->posts as $post) : ?>
             <div class="row post">
                 <div class="row header">
-                    <?php echo $post->getUser()->getEmail(); ?>
+                    <?php echo $post->getUser()->getUsername(); ?>
                 </div>
                 <div class="row body">
                     <?php echo $post->getText(); ?>
@@ -27,7 +27,7 @@
                 <div class="row comments">
                     <?php foreach($post->getComments() as $comment) : ?>
                     <div class="row comment">
-                        <span class="username"><?php echo $comment->getUser()->getEmail(); ?></span> <?php echo $comment->getText(); ?>
+                        <span class="username"><?php echo $comment->getUser()->getUsername(); ?></span> <?php echo $comment->getText(); ?>
                     </div>
                     <?php endforeach; ?>
                     <?php if(Helpers\Auth::check()) : ?>
@@ -50,7 +50,7 @@
     </div>
     <?php if(Helpers\Auth::check()) : ?>
     <div class="four columns white-box">
-        <a href="<?php echo BASE_URL.'message'; ?>" alt="messages">Messages (<?php echo count($this->messages); ?>)</a>
+        <a href="<?php echo BASE_URL.'messages'; ?>" alt="messages">Messages (<?php echo count($this->messages); ?>)</a>
     </div>
     <?php endif; ?>
 </div>

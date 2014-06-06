@@ -2,6 +2,9 @@
 
 use TheWall\Core;
 
+// hide system errors
+//error_reporting(null);
+
 /* This is the entry point of the web application */
 
 // Set site path

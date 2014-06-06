@@ -5,8 +5,8 @@ use TheWall\Core\Helpers;
 class CommentController extends Controller {
     function postCreate() {
         // get + trim vars
-        $text = (isset($_POST['text']) ? trim($_POST['text']) : false);
-        $postId = (isset($_POST['post_id']) ? trim($_POST['post_id']) : false);
+        $text = (isset($_POST['text']) ? trim(Helpers\Sanitizor::escapeHTML($_POST['text'])) : false);
+        $postId = (isset($_POST['post_id']) ? trim(Helpers\Sanitizor::escapeHTML($_POST['post_id'])) : false);
 
         // Validation
 
@@ -21,7 +21,11 @@ class CommentController extends Controller {
 
             if($comment->getUserId() != null) {
                 // Persist comment.
-                $comment->save();
+                try {
+                    $comment->save();
+                } catch (PropelException $p) {
+                    Helpers\Notifier::add('danger', $p);
+                }
             } else {
                 Helpers\Notifier::add('warning', 'You need to be logged in to write a comment!');
             }

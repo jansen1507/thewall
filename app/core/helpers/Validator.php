@@ -59,6 +59,36 @@ class Validator {
             }
         }
 
+        if(array_key_exists('username', $array)) {
+
+            // check for empty value
+            if(empty($array['username'])) {
+                array_push($errors, 'Username field is required');
+            }
+
+            // check for length
+            if(strlen($array['username']) < 3 || strlen($array['username']) > 16 ) {
+                array_push($errors, 'Username needs to be between 8 and 16 characters long');
+            }
+
+            // check if has number
+            if(preg_match("#[0-9]+#", $array['username'])) {
+                array_push($errors, 'usernames must not include numbers');
+            }
+
+            // check if has special characters
+            if(preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $array['username'])) {
+                array_push($errors, 'usernames must not include special characters');
+            }
+
+            $result = UserQuery::create()->findOneByUsername($array['username']);
+
+            // is available
+            if($result) {
+                array_push($errors, 'This username is already associated with an account');
+            }
+        }
+
 
         // if no errors in array, then return true.
         if(count($errors) == 0) {

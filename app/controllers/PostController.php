@@ -3,9 +3,9 @@
 use TheWall\Core\Helpers;
 
 class PostController extends Controller {
-    function postPost() {
+    function postCreate() {
         // get + trim vars
-        $text = (isset($_POST['text']) ? trim($_POST['text']) : false);
+        $text = (isset($_POST['text']) ? trim(Helpers\Sanitizor::escapeHTML($_POST['text'])) : false);
 
         // Validation
 

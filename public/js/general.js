@@ -16,6 +16,7 @@ $( document ).ready(function() {
         var createUserForm = [
             '<form action="'+config['BASE_URL']+'user/create" method="post">',
             '<ul>',
+            '<li class="field"><input class="medium input" placeholder="Username" type="text" name="username" /></li>',
             '<li class="field"><input class="medium input" placeholder="Email" type="text" name="email" /></li>',
             '<li class="field"><input class="medium input"  placeholder="Password"  type="password" name="password" /></li>',
             '<li class="field"><input class="btn secondary" style="color:white; height:30px; width:90px;"  type="submit" value="Create"></li>',
@@ -32,9 +33,9 @@ $( document ).ready(function() {
     $('#sendMessageButton').on("click", function() {
        $("#dialog").dialog("option", "title", "New Message");
        var createMessageForm = [
-           '<form action="'+config['BASE_URL']+'message/create" method="post">',
+           '<form action="'+config['BASE_URL']+'messages/create" method="post">',
            '<ul>',
-           '<li class="field"><input class="medium input" placeholder="To:(email)" type="email" name="email" /></li>',
+           '<li class="field"><input class="medium input" placeholder="To:(username)" type="text" name="username" /></li>',
            '<li class="field"><textarea class="medium input"  placeholder="Message:" type="text" name="text"></textarea></li>',
            '<li class="field"><input class="btn secondary" style="color:white; height:30px; width:90px;"  type="submit" value="Create"></li>',
            '</ul>',

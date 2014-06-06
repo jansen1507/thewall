@@ -19,17 +19,20 @@ class UserController extends Controller {
     function postCreate() {
 
         // get + trim vars
-        $email = (isset($_POST['email']) ? trim($_POST['email']) : false);
+        $email = (isset($_POST['email']) ? trim(Helpers\Sanitizor::escapeHTML($_POST['email'])) : false);
+        $username = (isset($_POST['username']) ? trim(Helpers\Sanitizor::escapeHTML($_POST['username'])) : false);
         $password = (isset($_POST['password']) ? trim($_POST['password']) : false);
 
         // Validation
 
         if(Helpers\Validator::check(array(
             'email' => $email,
-            'password' => $password
+            'password' => $password,
+            'username' => $username
         ))) {
 
             $user = new User();
+            $user->setUsername($username);
             $user->setEmail($email);
             $user->setPassword(Helpers\Hash::make($password));
 
