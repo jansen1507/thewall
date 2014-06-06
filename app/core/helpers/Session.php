@@ -20,5 +20,8 @@ class Session {
             return $_SESSION[$key];
         }
     }
+    public static function regenerate() {
+        session_regenerate_id(TRUE);
+    }
 }
 ?>

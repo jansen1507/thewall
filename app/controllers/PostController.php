@@ -6,11 +6,14 @@ class PostController extends Controller {
     function postCreate() {
         // get + trim vars
         $text = (isset($_POST['text']) ? trim(Helpers\Sanitizor::escapeHTML($_POST['text'])) : false);
+        $token = $_POST['csrftoken'];
+
 
         // Validation
 
         if(Helpers\Validator::check(array(
-            'text' => $text
+            'text' => $text,
+            'csrftoken' => $token
         ))) {
 
             $post = new Post();

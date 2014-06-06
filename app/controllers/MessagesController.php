@@ -51,7 +51,7 @@ class MessagesController extends Controller {
     function getShow($id) {
         $this->view->message = MessageQuery::create()->filterById($id)->findOne();
 
-        if($this->view->message->getReceiver()->getId() == Helpers\Session::get('user_id') || $this->view->message->getSender()->getId() == Helpers\Session::get('user_id')) {
+        if($this->view->message->getReceiver()->getId() === (int)Helpers\Session::get('user_id') || $this->view->message->getSender()->getId() === (int)Helpers\Session::get('user_id')) {
             $this->view->render('messages/message');
         } else {
             Helpers\URL::redirect('error');

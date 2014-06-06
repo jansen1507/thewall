@@ -7,6 +7,7 @@
                     <ul>
                         <li class="append field">
                             <input type="text" placeholder="Write something!" name="text" class="small input" style="max-width:92%;" />
+                            <input type="hidden" name="csrftoken" value="<?php echo Helpers\Session::get('csrftoken'); ?>" />
                             <button class="primary btn medium" style="font-size: 15px;font-weight:100;width:50px;color:white;background-color:#3b5998;">post</button>
                         </li>
                     </ul>
@@ -37,6 +38,7 @@
                                 <li class="append field">
                                     <input type="text" placeholder="Write comment!" name="text" class="small input" style="max-width: 90%" />
                                     <input type="hidden" name="post_id" value="<?php echo $post->getId(); ?>" />
+                                    <input type="hidden" name="csrftoken" value="<?php echo Helpers\Session::get('csrftoken'); ?>" />
                                     <button class="primary btn medium" style="font-size: 15px;font-weight:100;width:50px;color:white;background-color:#3b5998;">post</button>
                                 </li>
                             </ul>

@@ -11,7 +11,7 @@ class Validator {
 
         if(array_key_exists('text', $array)) {
             // check for empty string
-            if(empty($array['text']) || $array['text'] === '' || $array['text'] == null) {
+            if((string)$array['text'] === '') {
                 array_push($errors, 'That was an empty Post, you should write something more interesting!');
             }
         }
@@ -59,6 +59,13 @@ class Validator {
             }
         }
 
+        if(array_key_exists('csrftoken', $array)) {
+            // check for token match
+            if(!(string)$array['csrftoken'] === Session::get('csrftoken')) {
+                array_push($errors, 'CSRF Token mismatch');
+            }
+        }
+
         if(array_key_exists('username', $array)) {
 
             // check for empty value
@@ -91,7 +98,7 @@ class Validator {
 
 
         // if no errors in array, then return true.
-        if(count($errors) == 0) {
+        if((int)count($errors) === 0) {
             return true;
         } else {
             foreach($errors as $error) {

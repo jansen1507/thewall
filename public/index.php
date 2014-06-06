@@ -2,6 +2,7 @@
 
 use TheWall\Core;
 
+
 // hide system errors
 //error_reporting(null);
 

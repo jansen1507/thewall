@@ -21,7 +21,7 @@ class Router {
     function setPath($path) {
 
         // does the path direct to a valid dir?
-        if(is_dir($path) == false) {
+        if((bool)is_dir($path) === false) {
             throw new \Exception ('The controllers path: ('.$path.') was not found, or is not accessible');
         }
 
@@ -47,7 +47,7 @@ class Router {
             $this->controller = $parts[0];
             if(isset( $parts[1]))
             {
-                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                if ((string)$_SERVER['REQUEST_METHOD'] === 'POST') {
                     $this->action = 'post'.$parts[1];
                 } else {
                     $this->action = 'get'.$parts[1];
@@ -83,7 +83,7 @@ class Router {
 
         // if the file is not ok, die, and throw error.
         // TODO: handle with error controller.
-        if (is_readable($this->file) == false)
+        if ((bool)is_readable($this->file) === false)
         {
             header("Location: ".BASE_URL."error/not_found");
         }
@@ -99,7 +99,7 @@ class Router {
 
         // if no callable action, then call the default ('index').
         // (the index action is mandatory in controller classes).
-        if (is_callable(array($controller, $this->action)) == false)
+        if ((bool)is_callable(array($controller, $this->action)) === false)
         {
                 $action = 'getIndex';
         }

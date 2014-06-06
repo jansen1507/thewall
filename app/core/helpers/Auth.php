@@ -32,8 +32,11 @@ class Auth {
     }
 
     private static function login($user_id) {
+        // regenerating session id, to kick off previous potential session hijackers
+        Session::regenerate();
         // Setting the current user's id in the session.
         Session::set('user_id', $user_id);
+        Session::set('csrftoken', SHA1($user_id.Config::get()->general->salt));
     }
 
 } 
