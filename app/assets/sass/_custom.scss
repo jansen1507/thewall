@@ -77,6 +77,18 @@ nav#navbar-main-nav {
                 line-height:0;
             }
         }
+        li.persist {
+          span {
+            top:17px;
+            left:-38px;
+          }
+          i {
+            line-height:1;
+          }
+          p {
+            padding-left:25px;
+          }
+        }
     }
     .btn {
       border:none;
@@ -169,6 +181,8 @@ nav#navbar-main-nav {
       }
     }
 }
+
+
 
 #footer {
     border-top:1px solid #cfcfcf;

@@ -13,6 +13,12 @@
                                 <li class="field"><input class="medium input" placeholder="Email" type="text" name="email" /></li>
                                 <li class="field"><input class="medium input" placeholder="Password" type="password" name="password" /></li>
                                 <li class="field"><input type="submit" class="primary medium btn" value="Login" style="font-size:0.8rem;"></li>
+                                <li class="field persist">
+                                    <label class="checkbox">
+                                        <input name="persist" value="1" type="checkbox" />
+                                        <span></span><p style="color:white;font-size:10px;"> Remember me</p>
+                                    </label>
+                                </li>
                             </ul>
                         </form>
                     </li>

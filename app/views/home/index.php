@@ -17,6 +17,7 @@
             <?php endif; ?>
         </div>
         <div id="postsCon" class="row">
+
             <?php foreach($this->posts as $post) : ?>
             <div class="row post">
                 <div class="row header">

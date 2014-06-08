@@ -5,12 +5,21 @@ use TheWall\Core\Helpers;
 class UserController extends Controller {
 
     function postLogin() {
+
+        // check for cookie login persistence
+
+        if(isset($_POST['persist'])) {
+            $persist = ((int)$_POST['persist'] === 1 ? true : false);
+        } else {
+            $persist = false;
+        }
+
         $email = (isset($_POST['email']) ? trim($_POST['email']) : '');
         $password = (isset($_POST['password']) ? trim($_POST['password']) : '');
 
         // Login with auth
 
-        if(!Helpers\Auth::attempt($email, $password)) {
+        if(!Helpers\Auth::attempt($email, $password, $persist)) {
             // else, set notification and return to login
             Helpers\Notifier::add('warning', "We couldn't log you in with what you just entered. Please try again.");
         }

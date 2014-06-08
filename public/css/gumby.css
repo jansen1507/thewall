@@ -1706,6 +1706,9 @@ nav#navbar-main-nav ul form { margin: 0; padding-bottom: 0; }
 nav#navbar-main-nav ul form input { padding: 3px; font-size: 0.8rem; margin: 10px 10px 0 0; width: 160px; height: 26px; line-height: 26px; }
 nav#navbar-main-nav ul li { height: 20px; line-height: 0; }
 nav#navbar-main-nav ul li i { line-height: 0; }
+nav#navbar-main-nav ul li.persist span { top: 17px; left: -38px; }
+nav#navbar-main-nav ul li.persist i { line-height: 1; }
+nav#navbar-main-nav ul li.persist p { padding-left: 25px; }
 nav#navbar-main-nav .btn { border: none; width: 60px; height: 25px; th: 60px; color: white; border-radius: 3px; }
 nav#navbar-main-nav #main-logo { font-weight: bold; white-space: nowrap; }
 nav#navbar-main-nav ul#main-menu { float: right; }

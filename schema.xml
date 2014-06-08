@@ -43,4 +43,13 @@
         </foreign-key>
     </table>
 
+    <table name="persisted_sessions" phpName="PersistedSession">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
+        <column name="user_id" type="integer" required="true" />
+        <column name="token" type="varchar" size="255" required="true" />
+        <foreign-key foreignTable="users">
+            <reference local="user_id" foreign="id"/>
+        </foreign-key>
+    </table>
+
 </database>
