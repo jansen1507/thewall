@@ -23,7 +23,8 @@ class App {
             session_destroy();
 
         }
-        $_SESSION['last_active'] = time(); // update last activity time stamp
+        // update last activity time stamp
+        $_SESSION['last_active'] = time();
 
 
         // TODO: Move this definition

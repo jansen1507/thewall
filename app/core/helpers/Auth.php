@@ -27,7 +27,11 @@ class Auth {
         if(isset($_COOKIE['persisted_session'])) {
             unset($_COOKIE['persisted_session']);
             // setting cookie timeout to 'one hour ago'.
-            setcookie('persisted_session', '', time() - 3600, '/', NULL, NULL, True);
+
+            // Checking for SSL connection
+            $ssl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on' ? true : NULL);
+
+            setcookie('persisted_session', '', time() - 3600, '/', NULL, $ssl, True);
 
             // Remove DB token entry
             \PersistedSessionQuery::create()->findOneByUserId(Session::get('user_id'))->delete();
@@ -84,7 +88,9 @@ class Auth {
             $mac = hash_hmac('sha256', $cookie, SECRET_KEY);
             $cookie .= ':' . $mac;
 
-            setcookie('persisted_session', $cookie, $time, '/', NULL, NULL, True);
+            // Checking for SSL connection
+            $ssl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on' ? true : false);
+            setcookie('persisted_session', $cookie, $time, '/', NULL, $ssl, True);
 
         }
 
