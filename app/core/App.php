@@ -44,8 +44,18 @@ class App {
                 return false;
             }
 
-            $usertoken = \PersistedSessionQuery::create()->findOneByUserId($user_id)->getToken();
+            if(\PersistedSessionQuery::create()->findOneByUserId($user_id)) {
+                $usertoken = \PersistedSessionQuery::create()->findOneByUserId($user_id)->getToken();
+            } else {
 
+                // Remove cookie if no token is stored for user
+
+                // Checking for SSL connection
+                $ssl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on' ? true : NULL);
+                // removing cookie
+                setcookie('persisted_session', '', time() - 3600, '/', NULL, $ssl, True);
+                Helpers\URL::redirect('home');
+            }
 
             if ($usertoken === $token) {
                 // regenerating session id, to kick off previous potential session hijackers

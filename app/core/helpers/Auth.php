@@ -33,6 +33,8 @@ class Auth {
 
             setcookie('persisted_session', '', time() - 3600, '/', NULL, $ssl, True);
 
+            // check for existing row in database
+
             // Remove DB token entry
             \PersistedSessionQuery::create()->findOneByUserId(Session::get('user_id'))->delete();
         }
