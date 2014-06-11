@@ -2,8 +2,8 @@
 namespace TheWall\Core\Helpers;
 
 class Observer {
-    public static function log($event) {
-        $file = __SITE_PATH.'logs/general.txt';
+    public static function log($fileName, $event) {
+        $file = __SITE_PATH.'logs/'.$fileName.'.txt';
 
         if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
             $ip = $_SERVER['HTTP_CLIENT_IP'];
@@ -18,6 +18,10 @@ class Observer {
         $user_id = (isset($_SESSION['user_id']) ? Session::get('user_id') : 'Unknown');
 
         $data = "Time[{$time}] : Event[{$event}] : UserId[{$user_id}] : IP[{$ip}] \n";
+
+        if (!is_dir(__SITE_PATH.'logs')) {
+            mkdir(__SITE_PATH.'logs', 0755, true);
+        }
 
         file_put_contents($file, $data, FILE_APPEND | LOCK_EX);
     }
