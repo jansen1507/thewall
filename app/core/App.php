@@ -66,8 +66,6 @@ class App {
             }
         }
 
-        Helpers\Observer::log('general','visit');
-
         // instantiating the router.
         $router = new Libs\Router();
 
@@ -77,7 +75,4 @@ class App {
         // running the loader
         $router->loader();
     }
-    public function detect() {
-
-    }
-} 
+}
