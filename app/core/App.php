@@ -66,6 +66,8 @@ class App {
             }
         }
 
+        Helpers\Observer::log('visit');
+
         // instantiating the router.
         $router = new Libs\Router();
 
