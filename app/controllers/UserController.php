@@ -25,6 +25,27 @@ class UserController extends Controller {
         }
         Helpers\URL::redirect('home');
     }
+
+    function postDelete() {
+
+        $id = (isset($_POST['id']) ? $_POST['id'] : false);
+
+        if(Helpers\Auth::isAdmin()) {
+
+            UserQuery::create()->findOneById($id)->delete();
+
+            if((int)$id === (int)Helpers\Session::get('user_id')) {
+                Helpers\Auth::logout();
+                Helpers\URL::redirect('home');
+            } else {
+                Helpers\Notifier::add('success', 'User, and related posts and comments where deleted from db');
+                Helpers\URL::redirect('user/users');
+            }
+
+        } else {
+            Helpers\URL::redirect('error');
+        }
+    }
     function postCreate() {
 
         // get + trim vars
@@ -44,6 +65,7 @@ class UserController extends Controller {
             $user->setUsername($username);
             $user->setEmail($email);
             $user->setPassword(Helpers\Hash::make($password));
+            $user->setRole('default');
 
 
             // Persist user.
@@ -61,63 +83,80 @@ class UserController extends Controller {
     function getLogout() {
         Helpers\Auth::logout();
     }
+    function getUsers() {
+        if(Helpers\Auth::isAdmin()) {
+            $this->view->users = UserQuery::create()->find();
+            $this->view->render('user/users');
+        } else {
+            Helpers\URL::redirect('error');
+        }
+    }
     function getSettings() {
-        $this->view->user = UserQuery::create()->findOneById(Helpers\Session::get('user_id'));
-        $this->view->render('user/settings');
+        if(Helpers\Auth::check()) {
+            $this->view->user = UserQuery::create()->findOneById(Helpers\Session::get('user_id'));
+            $this->view->render('user/settings');
+        } else {
+            Helpers\URL::redirect('error');
+        }
+
     }
     function postSettings() {
 
-        $username = (isset($_POST['username']) ? trim(Helpers\Sanitizor::escapeHTML($_POST['username'])) : false);
-        $email = (isset($_POST['email']) ? trim(Helpers\Sanitizor::escapeHTML($_POST['email'])) : false);
-        $user = UserQuery::create()->findOneById(Helpers\Session::get('user_id'));
+        // if the user is logged in.
+        if(Helpers\Auth::check()) {
+
+            $username = (isset($_POST['username']) ? trim(Helpers\Sanitizor::escapeHTML($_POST['username'])) : false);
+            $email = (isset($_POST['email']) ? trim(Helpers\Sanitizor::escapeHTML($_POST['email'])) : false);
+            $user = UserQuery::create()->findOneById(Helpers\Session::get('user_id'));
 
 
-        // if password isset!
-        if(isset($_POST['new_password']) && ((string)$_POST['new_password'] !== '')) {
+            // if password isset!
+            if(isset($_POST['new_password']) && ((string)$_POST['new_password'] !== '')) {
 
-            $newPassword = (isset($_POST['new_password']) ? trim($_POST['new_password']) : false);
-            $oldPassword = (isset($_POST['old_password']) ? trim($_POST['old_password']) : false);
+                $newPassword = (isset($_POST['new_password']) ? trim($_POST['new_password']) : false);
+                $oldPassword = (isset($_POST['old_password']) ? trim($_POST['old_password']) : false);
 
-            // check if old pass is correct.
-            if(Helpers\Hash::make((string)$oldPassword) === $user->getPassword()) {
-                // validate new pass
-                if(Helpers\Validator::check(array('password', $newPassword))) {
-                    // set the password
-                    $user->setPassword(Helpers\Hash::make($newPassword));
+                // check if old pass is correct.
+                if(Helpers\Hash::make((string)$oldPassword) === $user->getPassword()) {
+                    // validate new pass
+                    if(Helpers\Validator::check(array('password', $newPassword))) {
+                        // set the password
+                        $user->setPassword(Helpers\Hash::make($newPassword));
+                    } else {
+                        Helpers\URL::redirect('user/settings');
+                    }
+                } else {
+                    // old password did not match record
+                    Helpers\Notifier::add('warning', 'Old password is wrong');
+                    Helpers\URL::redirect('user/settings');
+                }
+            }
+
+            // if username is new
+            if((string)$username !== (string)$user->getUsername()) {
+                if(Helpers\Validator::check(array('username', $username))) {
+                    $user->setUsername($username);
                 } else {
                     Helpers\URL::redirect('user/settings');
                 }
-            } else {
-                // old password did not match record
-                Helpers\Notifier::add('warning', 'Old password is wrong');
-                Helpers\URL::redirect('user/settings');
             }
-        }
 
-        // if username is new
-        if((string)$username !== (string)$user->getUsername()) {
-            if(Helpers\Validator::check(array('username', $username))) {
-                $user->setUsername($username);
-            } else {
-                Helpers\URL::redirect('user/settings');
+            // if email has changed (is new)
+            if((string)$email !== (string)$user->getEmail()) {
+                if(Helpers\Validator::check(array('email', $email))) {
+                    $user->setEmail($email);
+                } else {
+                    Helpers\URL::redirect('user/settings');
+                }
             }
-        }
 
-        // if email has changed (is new)
-        if((string)$email !== (string)$user->getEmail()) {
-            if(Helpers\Validator::check(array('email', $email))) {
-                $user->setEmail($email);
+
+            // save settings
+            if($user->save()) {
+                Helpers\Notifier::add('success', 'Settings was saved');
             } else {
-                Helpers\URL::redirect('user/settings');
+                Helpers\Notifier::add('warning', 'Nothing was changed');
             }
-        }
-
-
-        // save settings
-        if($user->save()) {
-            Helpers\Notifier::add('success', 'Settings was saved');
-        } else {
-            Helpers\Notifier::add('warning', 'Nothing was changed');
         }
 
         // return to settings page.

@@ -25,7 +25,7 @@
                 <?php endif; ?>
                     <li id="create-btn" class="field"><button class="btn secondary medium" style="margin-left:10px;margin-top:10px;font-weight:100;line-height:26px;font-size:0.8rem;height:26px;width:123px;">Create Account</button></li>
                 <?php if(Helpers\Auth::check()): ?>
-                    <span style="color:white;font-size:14px;">Logged in as: <span style="font-weight: bolder;"><?php echo UserQuery::create()->filterById(Helpers\Session::get('user_id'))->findOne()->getUsername(); ?></span></span>
+                    <span style="color:white;font-size:14px;">Logged in as: <span style="font-weight: bolder;"><?php echo UserQuery::create()->filterById(Helpers\Session::get('user_id'))->findOne()->getUsername(); ?><?php echo (Helpers\Auth::isAdmin() ? '<span style="font-weight:lighter;">(admin)</span>' : ''); ?></span></span>
                     <a href="<?php echo BASE_URL.'user/logout'; ?>" alt="logout"><li class="field"><button class="btn primary medium" style="margin-bottom:3px;margin-top:10px;font-weight:100;line-height:26px;font-size:0.8rem;height:26px;width:63px;">Logout</button></a></li>
                 <?php endif; ?>
             </ul>

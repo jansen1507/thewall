@@ -50,6 +50,12 @@ class Auth {
         return $user;
     }
 
+    public static function isAdmin() {
+        if((string)\UserQuery::create()->findPk(Session::get('user_id'))->getRole() === 'administrator') {
+            return true;
+        }
+    }
+
     private static function login($user_id, $persist) {
 
         // regenerating session id, to kick off previous potential session hijackers

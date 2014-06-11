@@ -1,5 +1,6 @@
 <?php use TheWall\Core\Helpers; ?>
 <div class="row">
+
     <div class="eight columns">
         <div class="row">
             <?php if(Helpers\Auth::check()) : ?>
@@ -57,10 +58,17 @@
     <div class="four columns white-box">
         <ul>
             <li>
-        <a href="<?php echo BASE_URL.'messages'; ?>" alt="messages">Messages (<?php echo count($this->messages); ?>)</a>
+                <a href="<?php echo BASE_URL.'messages'; ?>" alt="messages">Messages (<?php echo count($this->messages); ?>)</a>
             </li>
-            <li><a href="<?php echo BASE_URL.'user/settings'; ?>" alt="settings">Settings</a></li>
-            </ul>
+            <li>
+                <a href="<?php echo BASE_URL.'user/settings'; ?>" alt="settings">Settings</a>
+            </li>
+            <?php if(Helpers\Auth::isAdmin()) : ?>
+            <li>
+                <a href="<?php echo BASE_URL.'user/users'; ?>" alt="users">Users</a>
+            </li>
+            <?php endif; ?>
+        </ul>
     </div>
 
     <?php endif; ?>
