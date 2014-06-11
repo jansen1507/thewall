@@ -15,7 +15,7 @@ class App {
          | Check for Expired Session
          */
 
-        if (isset($_SESSION['last_active']) && (time() - $_SESSION['last_active'] > 60)) {
+        if (isset($_SESSION['last_active']) && (time() - $_SESSION['last_active'] > 1800)) {
             // The last activity was over 30 minutes ago.
             // unset
             session_unset();

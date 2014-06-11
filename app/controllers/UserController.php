@@ -61,4 +61,68 @@ class UserController extends Controller {
     function getLogout() {
         Helpers\Auth::logout();
     }
+    function getSettings() {
+        $this->view->user = UserQuery::create()->findOneById(Helpers\Session::get('user_id'));
+        $this->view->render('user/settings');
+    }
+    function postSettings() {
+
+        $username = (isset($_POST['username']) ? trim(Helpers\Sanitizor::escapeHTML($_POST['username'])) : false);
+        $email = (isset($_POST['email']) ? trim(Helpers\Sanitizor::escapeHTML($_POST['email'])) : false);
+        $user = UserQuery::create()->findOneById(Helpers\Session::get('user_id'));
+
+
+        // if password isset!
+        if(isset($_POST['new_password']) && ((string)$_POST['new_password'] !== '')) {
+
+            $newPassword = (isset($_POST['new_password']) ? trim($_POST['new_password']) : false);
+            $oldPassword = (isset($_POST['old_password']) ? trim($_POST['old_password']) : false);
+
+            // check if old pass is correct.
+            if(Helpers\Hash::make((string)$oldPassword) === $user->getPassword()) {
+                // validate new pass
+                if(Helpers\Validator::check(array('password', $newPassword))) {
+                    // set the password
+                    $user->setPassword(Helpers\Hash::make($newPassword));
+                } else {
+                    Helpers\URL::redirect('user/settings');
+                }
+            } else {
+                // old password did not match record
+                Helpers\Notifier::add('warning', 'Old password is wrong');
+                Helpers\URL::redirect('user/settings');
+            }
+        }
+
+        // if username is new
+        if((string)$username !== (string)$user->getUsername()) {
+            if(Helpers\Validator::check(array('username', $username))) {
+                $user->setUsername($username);
+            } else {
+                Helpers\URL::redirect('user/settings');
+            }
+        }
+
+        // if email has changed (is new)
+        if((string)$email !== (string)$user->getEmail()) {
+            if(Helpers\Validator::check(array('email', $email))) {
+                $user->setEmail($email);
+            } else {
+                Helpers\URL::redirect('user/settings');
+            }
+        }
+
+
+        // save settings
+        if($user->save()) {
+            Helpers\Notifier::add('success', 'Settings was saved');
+        } else {
+            Helpers\Notifier::add('warning', 'Nothing was changed');
+        }
+
+        // return to settings page.
+        Helpers\URL::redirect('user/settings');
+
+
+    }
 } 

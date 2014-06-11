@@ -12,7 +12,7 @@
         <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
         <column name="user_id" type="integer" required="true" />
         <column name="text" type="varchar" size="255" required="true" />
-        <foreign-key foreignTable="users" phpName="User">
+        <foreign-key foreignTable="users" phpName="User" onDelete="CASCADE">
             <reference local="user_id" foreign="id"/>
         </foreign-key>
     </table>
@@ -25,7 +25,7 @@
         <foreign-key foreignTable="users" phpName="User">
             <reference local="user_id" foreign="id"/>
         </foreign-key>
-        <foreign-key foreignTable="posts" phpName="Post">
+        <foreign-key foreignTable="posts" phpName="Post" onDelete="CASCADE">
             <reference local="post_id" foreign="id"/>
         </foreign-key>
     </table>
@@ -38,7 +38,7 @@
         <foreign-key foreignTable="users" phpName="Sender" refPhpName="Sender">
             <reference local="sender_id" foreign="id"/>
         </foreign-key>
-        <foreign-key foreignTable="users" phpName="Receiver" refPhpName="Receiver">
+        <foreign-key foreignTable="users" phpName="Receiver" refPhpName="Receiver" onDelete="CASCADE">
             <reference local="receiver_id" foreign="id"/>
         </foreign-key>
     </table>
@@ -47,7 +47,7 @@
         <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
         <column name="user_id" type="integer" required="true" />
         <column name="token" type="varchar" size="255" required="true" />
-        <foreign-key foreignTable="users">
+        <foreign-key foreignTable="users" onDelete="CASCADE">
             <reference local="user_id" foreign="id"/>
         </foreign-key>
     </table>

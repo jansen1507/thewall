@@ -29,7 +29,9 @@
                 <div class="row comments">
                     <?php foreach($post->getComments() as $comment) : ?>
                     <div class="row comment">
-                        <span class="username"><?php echo $comment->getUser()->getUsername(); ?></span> <?php echo $comment->getText(); ?>
+                        <div class="twelve columns">
+                            <span class="username"><?php echo $comment->getUser()->getUsername(); ?></span> <?php echo $comment->getText(); ?>
+                        </div>
                     </div>
                     <?php endforeach; ?>
                     <?php if(Helpers\Auth::check()) : ?>
@@ -53,7 +55,13 @@
     </div>
     <?php if(Helpers\Auth::check()) : ?>
     <div class="four columns white-box">
+        <ul>
+            <li>
         <a href="<?php echo BASE_URL.'messages'; ?>" alt="messages">Messages (<?php echo count($this->messages); ?>)</a>
+            </li>
+            <li><a href="<?php echo BASE_URL.'user/settings'; ?>" alt="settings">Settings</a></li>
+            </ul>
     </div>
+
     <?php endif; ?>
 </div>
