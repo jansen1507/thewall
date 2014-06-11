@@ -4,13 +4,17 @@ use TheWall\Core\Helpers;
 
 class MessagesController extends Controller {
     function getIndex() {
-        // getting the messages
-        $this->view->messages = MessageQuery::create()
-            ->filterByReceiverId(Helpers\Session::get('user_id'))
-            ->orderById('desc')
-            ->find();
+        if(Helpers\Auth::check()) {
+            // getting the messages
+            $this->view->messages = MessageQuery::create()
+                ->filterByReceiverId(Helpers\Session::get('user_id'))
+                ->orderById('desc')
+                ->find();
 
-        $this->view->render('messages/inbox');
+            $this->view->render('messages/inbox');
+        } else {
+            Helpers\URL::redirect('error');
+        }
     }
     function getSent() {
         if(Helpers\Auth::check()) {
