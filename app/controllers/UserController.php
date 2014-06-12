@@ -22,9 +22,6 @@ class UserController extends Controller {
         if(!Helpers\Auth::attempt($email, $password, $persist)) {
             // else, set notification and return to login
             Helpers\Notifier::add('warning', "We couldn't log you in with what you just entered. Please try again.");
-            Helpers\Observer::log('unsuccessful_login_attempts', 'unsuccessful attempt');
-        } else {
-            Helpers\Observer::log('successful_logins', 'login');
         }
         Helpers\URL::redirect('home');
     }

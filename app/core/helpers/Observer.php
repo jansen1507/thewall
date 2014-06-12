@@ -20,11 +20,7 @@ class Observer {
         // foreach array key
         // $data .= : arraykey[$value]
 
-        foreach($args as $key => $item) {
-            echo $key.' => '.$item[];
-        }
 
-        die();
 
         $data = "\nTime[{$time}] : Event[{$event}] : UserId[{$user_id}] : IP[{$ip}]";
 
