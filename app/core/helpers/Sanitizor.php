@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: remeeh
- * Date: 06/06/14
- * Time: 03:18
- */
 
 namespace TheWall\Core\Helpers;
 
