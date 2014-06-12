@@ -87,7 +87,7 @@ class UserController extends Controller {
         Helpers\Auth::logout();
     }
     function getUsers() {
-        if(Helpers\Auth::isAdmin()) {
+        if(Helpers\Auth::check() && Helpers\Auth::isAdmin()) {
             $this->view->users = UserQuery::create()->find();
             $this->view->render('user/users');
         } else {

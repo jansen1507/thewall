@@ -2,7 +2,7 @@
 namespace TheWall\Core\Helpers;
 
 class Observer {
-    public static function log($fileName, $event) {
+    public static function log($fileName, $args = array()) {
         $file = __SITE_PATH.'logs/'.$fileName.'.txt';
 
         if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
@@ -16,6 +16,15 @@ class Observer {
         $time = date('d-m-y - H:i:s');
 
         $user_id = (isset($_SESSION['user_id']) ? Session::get('user_id') : 'Unknown');
+
+        // foreach array key
+        // $data .= : arraykey[$value]
+
+        foreach($args as $key => $item) {
+            echo $key.' => '.$item[];
+        }
+
+        die();
 
         $data = "\nTime[{$time}] : Event[{$event}] : UserId[{$user_id}] : IP[{$ip}]";
 
