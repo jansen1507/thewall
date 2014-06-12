@@ -66,7 +66,10 @@ class App {
             }
         }
 
-
+        Helpers\Observer::log('test', array(
+            'testkey' => 'testvalue',
+            'userid' => (isset($_POST['user_id']) ? $_POST['user_id'] : 'Unknown User')
+        ));
 
         // instantiating the router.
         $router = new Libs\Router();

@@ -2,27 +2,33 @@
 namespace TheWall\Core\Helpers;
 
 class Observer {
-    public static function log($fileName, $args = array()) {
+    public static function log($fileName, $args = array(), $ip = true) {
+
         $file = __SITE_PATH.'logs/'.$fileName.'.txt';
 
-        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-            $ip = $_SERVER['HTTP_CLIENT_IP'];
-        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-        } else {
-            $ip = $_SERVER['REMOTE_ADDR'];
+        // new line
+        $data = "\n";
+
+        // adding timestamp
+        $data .= '[time]'.date('d-m-y - H:i:s');
+
+
+
+        foreach($args as $key => $value) {
+            $data .= ' : ['.$key.']'.$value;
         }
 
-        $time = date('d-m-y - H:i:s');
+        if($ip) {
+            if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+                $ip = $_SERVER['HTTP_CLIENT_IP'];
+            } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+                $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+            } else {
+                $ip = $_SERVER['REMOTE_ADDR'];
+            }
 
-        $user_id = (isset($_SESSION['user_id']) ? Session::get('user_id') : 'Unknown');
-
-        // foreach array key
-        // $data .= : arraykey[$value]
-
-
-
-        $data = "\nTime[{$time}] : Event[{$event}] : UserId[{$user_id}] : IP[{$ip}]";
+            $data .= ' : IP['.$ip.']';
+        }
 
         if (!is_dir(__SITE_PATH.'logs')) {
             mkdir(__SITE_PATH.'logs', 0755, true);
