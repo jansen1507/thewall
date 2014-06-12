@@ -23,6 +23,13 @@ class CommentController extends Controller {
                 // Persist comment.
                 try {
                     $comment->save();
+
+                    Helpers\Observer::log('created_comments', array(
+                        'creator' => Helpers\Session::get('user_id'),
+                        'commentId' => $comment->getId(),
+                        'postId' => $comment->getPost()->getId()
+                    ));
+
                 } catch (PropelException $p) {
                     Helpers\Notifier::add('danger', $p);
                 }

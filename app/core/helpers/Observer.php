@@ -6,11 +6,8 @@ class Observer {
 
         $file = __SITE_PATH.'logs/'.$fileName.'.txt';
 
-        // new line
-        $data = "\n";
-
         // adding timestamp
-        $data .= '[time]'.date('d-m-y - H:i:s');
+        $data = '[time]'.date('d-m-y - H:i:s');
 
 
 
@@ -29,6 +26,9 @@ class Observer {
 
             $data .= ' : IP['.$ip.']';
         }
+
+        // new line
+        $data .= "\n";
 
         if (!is_dir(__SITE_PATH.'logs')) {
             mkdir(__SITE_PATH.'logs', 0755, true);

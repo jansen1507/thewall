@@ -32,7 +32,14 @@ class UserController extends Controller {
 
         if(Helpers\Auth::isAdmin()) {
 
-            UserQuery::create()->findOneById($id)->delete();
+            $user = UserQuery::create()->findOneById($id);
+
+            $user->delete();
+
+            Helpers\Observer::log('deleted_accounts', array(
+                'id' => $user->getId(),
+                'deletedBy' => Helpers\Session::get('user_id')
+            ));
 
             if((int)$id === (int)Helpers\Session::get('user_id')) {
                 Helpers\Auth::logout();
@@ -70,6 +77,11 @@ class UserController extends Controller {
 
             // Persist user.
             if($user->save()) {
+                Helpers\Observer::log('created_accounts', array(
+                   'userId' => $user->getId(),
+                   'createdWithEmail' => $user->getEmail()
+                ));
+
                 Helpers\Notifier::add('success', 'Congratulations, your user has been created, now login with your new credentials.');
             } else {
                 Helpers\Notifier::add('danger', 'Something went wrong while trying to create your account. :(');
@@ -153,6 +165,9 @@ class UserController extends Controller {
 
             // save settings
             if($user->save()) {
+                Helpers\Observer::log('updated_accounts', array(
+                   'userId' => $user->getId()
+                ));
                 Helpers\Notifier::add('success', 'Settings was saved');
             } else {
                 Helpers\Notifier::add('warning', 'Nothing was changed');

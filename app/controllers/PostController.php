@@ -23,6 +23,11 @@ class PostController extends Controller {
 
                 // Persist post.
                 $post->save();
+
+                Helpers\Observer::log('created_posts', array(
+                   'creator' => Helpers\Session::get('user_id'),
+                   'postId' => $post->getId()
+                ));
             }
         }
         Helpers\URL::redirect('home');
