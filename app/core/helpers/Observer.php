@@ -17,7 +17,7 @@ class Observer {
 
         $user_id = (isset($_SESSION['user_id']) ? Session::get('user_id') : 'Unknown');
 
-        $data = "Time[{$time}] : Event[{$event}] : UserId[{$user_id}] : IP[{$ip}] \n";
+        $data = "\nTime[{$time}] : Event[{$event}] : UserId[{$user_id}] : IP[{$ip}]";
 
         if (!is_dir(__SITE_PATH.'logs')) {
             mkdir(__SITE_PATH.'logs', 0755, true);
