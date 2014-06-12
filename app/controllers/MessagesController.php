@@ -63,6 +63,11 @@ class MessagesController extends Controller {
 
             $this->view->message = MessageQuery::create()->filterById($id)->findOne();
 
+            // checks if a message was returned.
+            if(!$this->view->message) {
+                Helpers\URL::redirect('error');
+            }
+
             if($this->view->message->getReceiver()->getId() === (int)Helpers\Session::get('user_id') || $this->view->message->getSender()->getId() === (int)Helpers\Session::get('user_id')) {
                 $this->view->render('messages/message');
             } else {
