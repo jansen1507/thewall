@@ -22,16 +22,16 @@
             <?php foreach($this->posts as $post) : ?>
             <div class="row post">
                 <div class="row header">
-                    <?php echo $post->getUser()->getUsername(); ?>
+                    <?php echo Helpers\Sanitizor::escapeHTML($post->getUser()->getUsername()); ?>
                 </div>
                 <div class="row body">
-                    <?php echo $post->getText(); ?>
+                    <?php echo Helpers\Sanitizor::escapeHTML($post->getText()); ?>
                 </div>
                 <div class="row comments">
                     <?php foreach($post->getComments() as $comment) : ?>
                     <div class="row comment">
                         <div class="twelve columns">
-                            <span class="username"><?php echo $comment->getUser()->getUsername(); ?></span> <?php echo $comment->getText(); ?>
+                            <span class="username"><?php echo Helpers\Sanitizor::escapeHTML($comment->getUser()->getUsername()); ?></span> <?php echo Helpers\Sanitizor::escapeHTML($comment->getText()); ?>
                         </div>
                     </div>
                     <?php endforeach; ?>
@@ -41,8 +41,8 @@
                             <ul>
                                 <li class="append field">
                                     <input type="text" placeholder="Write comment!" name="text" class="small input" style="max-width: 90%" />
-                                    <input type="hidden" name="post_id" value="<?php echo $post->getId(); ?>" />
-                                    <input type="hidden" name="csrftoken" value="<?php echo Helpers\Session::get('csrftoken'); ?>" />
+                                    <input type="hidden" name="post_id" value="<?php echo Helpers\Sanitizor::escapeHTML($post->getId()); ?>" />
+                                    <input type="hidden" name="csrftoken" value="<?php echo Helpers\Sanitizor::escapeHTML(Helpers\Session::get('csrftoken')); ?>" />
                                     <button class="primary btn medium" style="font-size: 15px;font-weight:100;width:50px;color:white;background-color:#3b5998;">post</button>
                                 </li>
                             </ul>
