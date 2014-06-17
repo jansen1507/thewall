@@ -40,6 +40,7 @@ class App {
 
         if ($cookie) {
             list ($user_id, $token, $mac) = explode(':', $cookie);
+            // checking if the cookie was created by us, by checking the $mac
             if ($mac !== hash_hmac('sha256', $user_id . ':' . $token, SECRET_KEY)) {
                 return false;
             }
