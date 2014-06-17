@@ -30,7 +30,7 @@ class UserController extends Controller {
 
         $id = (isset($_POST['id']) ? $_POST['id'] : false);
 
-        if(Helpers\Auth::isAdmin()) {
+        if(Helpers\Auth::isAdmin() && Helpers\Session::get('csrftoken') === $_POST['csrftoken']) {
 
             $user = UserQuery::create()->findOneById($id);
 
