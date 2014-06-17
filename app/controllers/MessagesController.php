@@ -3,7 +3,10 @@
 use TheWall\Core\Helpers;
 
 class MessagesController extends Controller {
-    function getIndex() {
+
+    // MESSAGES IS DISABLED
+
+/*    function getIndex() {
         if(Helpers\Auth::check()) {
             // getting the messages
             $this->view->messages = MessageQuery::create()
@@ -75,4 +78,5 @@ class MessagesController extends Controller {
             }
         }
     }
+*/
 } 

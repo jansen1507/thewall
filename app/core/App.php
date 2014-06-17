@@ -48,9 +48,6 @@ class App {
             if(\PersistedSessionQuery::create()->findOneByUserId($user_id)) {
                 $usertoken = \PersistedSessionQuery::create()->findOneByUserId($user_id)->getToken();
             } else {
-
-                // Remove cookie if no token is stored for user
-
                 // Checking for SSL connection
                 $ssl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on' ? true : NULL);
                 // removing cookie
